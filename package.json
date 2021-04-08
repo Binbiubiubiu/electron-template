@@ -1,0 +1,59 @@
+{
+  "name": "electron-template",
+  "version": "1.0.0",
+  "description": "a electron template",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env TS_NODE_PROJECT=\"scripts/tsconfig-for-webpack-config.json\" webpack serve -c scripts/webpack.config.ts",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Simon-Bin/electron-template.git"
+  },
+  "keywords": [],
+  "author": "Simon-Bin<2632003786@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Simon-Bin/electron-template/issues"
+  },
+  "homepage": "https://github.com/Simon-Bin/electron-template#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/node": "^14.14.37",
+    "@types/react-dom": "^17.0.3",
+    "@types/webpack": "^5.28.0",
+    "@types/webpack-dev-server": "^3.11.3",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^12.0.2",
+    "electron-builder": "^22.10.5",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.23.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "html-webpack-plugin": "^5.3.1",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.2.4",
+    "webpack": "^5.31.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
