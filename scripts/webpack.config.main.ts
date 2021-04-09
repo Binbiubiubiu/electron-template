@@ -13,7 +13,7 @@ const config: webpack.Configuration = {
   entry: r('src', 'main.ts'),
   output: {
     path: r('dist'),
-    filename: '[name].js',
+    filename: 'main.js',
     clean: true,
   },
   mode: 'development',
@@ -32,6 +32,9 @@ const config: webpack.Configuration = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
+          options: {
+            // cacheDirectory: true,
+          },
         },
       },
     ],
@@ -49,6 +52,11 @@ const config: webpack.Configuration = {
     }),
   ],
   stats: 'errors-warnings',
+  watchOptions: {
+    aggregateTimeout: 600,
+    ignored: /node_modules/,
+    poll: 1000,
+  },
 };
 
 export default config;

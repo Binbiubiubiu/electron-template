@@ -6,7 +6,6 @@ import { makeAutoObservable } from 'mobx';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import { observer } from 'mobx-react-lite';
-import { Button } from 'antd';
 import loadable from '@loadable/component';
 import './styles/style.less';
 // import { Home } from './pages/Home';

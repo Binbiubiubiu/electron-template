@@ -2,8 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "esnext",
-    "module": "commonjs",
-    "isolatedModules": false
+    "module": "esnext",
+    "useDefineForClassFields": true
   },
   "include": ["src/**/*"]
 }

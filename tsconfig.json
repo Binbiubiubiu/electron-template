@@ -4,8 +4,6 @@
     "module": "esnext",
     "moduleResolution": "node",
     "removeComments": true,
-
-    "isolatedModules": true,
     "sourceMap": false,
     "declaration": false,
     "strict": true,

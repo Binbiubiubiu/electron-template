@@ -1,16 +1,17 @@
-import { app, BrowserWindow, session } from 'electron';
-import installExtension, {
-  REACT_DEVELOPER_TOOLS,
-  MOBX_DEVTOOLS,
-} from 'electron-devtools-installer';
-import isDev from 'electron-is-dev';
+import { app, BrowserWindow } from 'electron';
+// import installExtension, {
+//   REACT_DEVELOPER_TOOLS,
+//   MOBX_DEVTOOLS,
+// } from 'electron-devtools-installer';
+// import isDev from 'electron-is-dev';
+// import path from 'path';
 
 function createWindow() {
   const win = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
-      preload: 'preload.js',
+      preload: 'proload.js',
     },
   });
 
