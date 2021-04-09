@@ -2,7 +2,7 @@
   "name": "electron-template",
   "version": "1.0.0",
   "description": "a electron template",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {},
   "repository": {
     "type": "git",

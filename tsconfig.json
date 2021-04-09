@@ -2,19 +2,19 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "allowJs": true,
     "moduleResolution": "node",
-    "jsx": "react-jsx",
     "removeComments": true,
+
     "isolatedModules": true,
-    "strict": false,
+    "sourceMap": false,
+    "declaration": false,
+    "strict": true,
     "baseUrl": ".",
-    "paths": {},
+    "jsx": "react-jsx",
     "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

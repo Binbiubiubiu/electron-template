@@ -4,17 +4,36 @@ module.exports = function (api) {
   return {
     presets: [
       [
-        '@babel/preset-typescript',
+        '@babel/preset-env',
         {
-          isTSX: true,
-          allExtensions: true,
+          useBuiltIns: 'entry',
+          corejs: { version: '3.8', proposals: true },
         },
       ],
-      '@babel/preset-env',
       [
         '@babel/preset-react',
         {
           runtime: 'automatic',
+        },
+      ],
+      [
+        '@babel/preset-typescript',
+        {
+          isTSX: true,
+          allExtensions: true,
+          allowDeclareFields: true,
+        },
+      ],
+    ],
+    plugins: [
+      ['@babel/plugin-proposal-class-properties', { loose: false }],
+      '@babel/plugin-syntax-dynamic-import',
+      [
+        'import',
+        {
+          libraryName: 'antd',
+          libraryDirectory: 'es',
+          style: true,
         },
       ],
     ],
