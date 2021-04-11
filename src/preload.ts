@@ -4,7 +4,10 @@ window.addEventListener('DOMContentLoaded', () => {
     if (element) element.innerText = text;
   };
 
-  for (const type of ['chrome', 'node', 'electron']) {
+  for (const type of ['chrome', 'node', 'chrome']) {
     replaceText(`${type}-version`, process.versions[type]!);
   }
+  const msg = document.createElement('div');
+  msg.innerHTML = JSON.stringify(process.versions);
+  console.log(process.versions);
 });

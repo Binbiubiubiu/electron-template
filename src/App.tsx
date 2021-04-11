@@ -34,13 +34,16 @@ const TimerView = observer(() => (
     <div>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">asdf</Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/about">dcsdfadasd</Link>
         </li>
         <li>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/about">dcsdfadasd</Link>
+        </li>
+        <li>
+          <Link to="/dashboard">Dashboardasdfasdf </Link>
         </li>
       </ul>
 

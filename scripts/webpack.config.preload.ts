@@ -8,13 +8,18 @@ import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 const r = (...args: string[]) => path.resolve(__dirname, '..', ...args);
 
 const config: webpack.Configuration = {
+  name: 'electron-preload',
   mode: isProductionMode ? 'production' : 'development',
+  dependencies: ['electron-main'],
+  // cache: {
+  //   type: 'filesystem',
+  // },
   entry: r('src', 'preload.ts'),
   output: {
     path: r('dist'),
     filename: 'preload.js',
   },
-  target: 'web', //'electron-preload',
+  target: 'electron-preload',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
@@ -27,7 +32,7 @@ const config: webpack.Configuration = {
         use: {
           loader: 'babel-loader',
           options: {
-            // cacheDirectory: true,
+            cacheDirectory: true,
           },
         },
       },
@@ -48,6 +53,7 @@ const config: webpack.Configuration = {
     }),
   ],
   stats: 'errors-warnings',
+  watch: true,
   watchOptions: {
     aggregateTimeout: 600,
     ignored: /node_modules/,

@@ -9,23 +9,40 @@ import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 
 import pkg from '../package.json';
+import WebpackDevServer from 'webpack-dev-server';
 
 const r = (...args: string[]) => path.resolve(__dirname, '..', ...args);
 
-const config: webpack.Configuration = {
+const config: webpack.Configuration & {
+  devServer?: WebpackDevServer.Configuration;
+} = {
+  name: 'electron-renderer',
   mode: isProductionMode ? 'production' : 'development',
+  dependencies: ['electron-main'],
+  cache: {
+    type: 'filesystem',
+  },
   entry: {
     renderer: {
       import: r('src', 'App.tsx'),
       dependOn: 'share',
     },
-    share: Object.keys(pkg.dependencies),
+    share: [
+      '@loadable/component',
+      'antd',
+      'mobx',
+      'mobx-react-lite',
+      'react',
+      'react-dom',
+      'react-router-dom',
+    ],
   },
   output: {
     path: r('dist'),
     filename: '[name].js',
+    globalObject: 'this',
   },
-  target: 'electron-renderer',
+  target: 'web', //'electron-renderer',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
@@ -38,7 +55,7 @@ const config: webpack.Configuration = {
         use: {
           loader: 'babel-loader',
           options: {
-            // cacheDirectory: true,
+            cacheDirectory: true,
           },
         },
       },
@@ -95,11 +112,22 @@ const config: webpack.Configuration = {
     }),
   ],
   stats: 'errors-warnings',
-  watchOptions: {
-    aggregateTimeout: 600,
-    ignored: /node_modules/,
-    poll: 1000,
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000,
+    writeToDisk: true,
+    watchOptions: {
+      aggregateTimeout: 600,
+      ignored: /node_modules/,
+      poll: 1000,
+    },
   },
+  // watchOptions: {
+  //   aggregateTimeout: 600,
+  //   ignored: /node_modules/,
+  //   poll: 1000,
+  // },
 };
 
 export default config;

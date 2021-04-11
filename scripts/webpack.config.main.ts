@@ -10,13 +10,17 @@ import { isProductionMode } from './utils';
 const r = (...args: string[]) => path.resolve(__dirname, '..', ...args);
 
 const config: webpack.Configuration = {
+  name: 'electron-main',
+  mode: isProductionMode ? 'production' : 'development',
+  // cache: {
+  //   type: 'filesystem',
+  // },
   entry: r('src', 'main.ts'),
   output: {
     path: r('dist'),
     filename: 'main.js',
     clean: true,
   },
-  mode: 'development',
   target: 'electron-main',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -33,7 +37,7 @@ const config: webpack.Configuration = {
         use: {
           loader: 'babel-loader',
           options: {
-            // cacheDirectory: true,
+            cacheDirectory: true,
           },
         },
       },
@@ -52,6 +56,7 @@ const config: webpack.Configuration = {
     }),
   ],
   stats: 'errors-warnings',
+  watch: true,
   watchOptions: {
     aggregateTimeout: 600,
     ignored: /node_modules/,
