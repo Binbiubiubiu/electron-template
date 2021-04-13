@@ -38,11 +38,11 @@ const config: webpack.Configuration & {
     ],
   },
   output: {
-    path: r('dist'),
+    path: r('app'),
     filename: '[name].js',
     globalObject: 'this',
   },
-  target: 'web', //'electron-renderer',
+  target: isProductionMode ? 'electron-renderer' : 'web',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },

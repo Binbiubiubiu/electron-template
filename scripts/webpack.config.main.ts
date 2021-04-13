@@ -17,7 +17,7 @@ const config: webpack.Configuration = {
   // },
   entry: r('src', 'main.ts'),
   output: {
-    path: r('dist'),
+    path: r('app'),
     filename: 'main.js',
     clean: true,
   },
@@ -56,7 +56,7 @@ const config: webpack.Configuration = {
     }),
   ],
   stats: 'errors-warnings',
-  watch: true,
+  watch: !isProductionMode,
   watchOptions: {
     aggregateTimeout: 600,
     ignored: /node_modules/,

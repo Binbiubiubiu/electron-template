@@ -16,7 +16,7 @@ const config: webpack.Configuration = {
   // },
   entry: r('src', 'preload.ts'),
   output: {
-    path: r('dist'),
+    path: r('app'),
     filename: 'preload.js',
   },
   target: 'electron-preload',
@@ -53,7 +53,7 @@ const config: webpack.Configuration = {
     }),
   ],
   stats: 'errors-warnings',
-  watch: true,
+  watch: !isProductionMode,
   watchOptions: {
     aggregateTimeout: 600,
     ignored: /node_modules/,
