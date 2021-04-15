@@ -53,7 +53,7 @@ const config: webpack.Configuration = {
     }),
   ],
   stats: 'errors-warnings',
-  watch: !isProductionMode,
+  // watch: !isProductionMode,
   watchOptions: {
     aggregateTimeout: 600,
     ignored: /node_modules/,

@@ -42,7 +42,8 @@ const config: webpack.Configuration & {
     filename: '[name].js',
     globalObject: 'this',
   },
-  target: isProductionMode ? 'electron-renderer' : 'web',
+  target: 'web', //'electron-renderer',
+
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
@@ -123,6 +124,7 @@ const config: webpack.Configuration & {
       poll: 1000,
     },
   },
+  // watch: !isProductionMode,
   // watchOptions: {
   //   aggregateTimeout: 600,
   //   ignored: /node_modules/,

@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 
 import installExtension, {
   REACT_DEVELOPER_TOOLS,
@@ -6,30 +6,32 @@ import installExtension, {
 } from 'electron-devtools-installer';
 import isDev from 'electron-is-dev';
 import path from 'path';
+import { checkUpdate } from './auto-update';
+
+let win: BrowserWindow;
 
 function createWindow() {
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
       preload: path.join(app.getAppPath(), 'preload.js'),
     },
   });
+  checkUpdate();
   if (isDev) {
-    // win.loadFile('index.html');
     win.loadURL('http://localhost:9000/');
   } else {
     win.loadFile('index.html');
   }
 }
 
-app.whenReady().then(() => {
+app.on('ready', () => {
   if (isDev) {
     installExtension(REACT_DEVELOPER_TOOLS);
     installExtension(MOBX_DEVTOOLS);
   }
 
-  createWindow();
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length == 0) {
       createWindow();
@@ -38,7 +40,9 @@ app.whenReady().then(() => {
 });
 
 app.on('window-all-closed', () => {
-  // if (process.platform !== 'darwin') {
-  app.quit();
-  // }
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
 });
+
+ipcMain.handle('get-version', () => app.getVersion());
