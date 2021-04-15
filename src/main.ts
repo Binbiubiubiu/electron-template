@@ -31,7 +31,7 @@ app.on('ready', () => {
     installExtension(REACT_DEVELOPER_TOOLS);
     installExtension(MOBX_DEVTOOLS);
   }
-
+  createWindow();
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length == 0) {
       createWindow();
