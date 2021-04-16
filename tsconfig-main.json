@@ -4,5 +4,5 @@
     "target": "esnext",
     "module": "commonjs"
   },
-  "include": ["src/**/*"]
+  "include": ["src/main/**/*"]
 }

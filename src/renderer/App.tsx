@@ -27,15 +27,13 @@ class Timer {
   }
 }
 
-const myTimer = new Timer();
-
 const TimerView = observer(() => {
   return (
     <Router>
       <div>
         <ul>
           <li>
-            <Link to="/">asdf</Link>
+            <Link to="/">asdfasdf</Link>
           </li>
           <li>
             <Link to="/about">dcsdfadasd</Link>
@@ -73,8 +71,10 @@ const TimerView = observer(() => {
   );
 });
 
-setInterval(() => {
-  myTimer.increaseTimer();
-}, 1000);
+// setInterval(() => {
+//   myTimer.increaseTimer();
+// }, 1000);
 
-ReactDom.render(<TimerView />, document.getElementById('app'));
+export function createApp() {
+  ReactDom.render(<TimerView />, document.getElementById('app'));
+}

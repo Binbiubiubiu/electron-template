@@ -5,5 +5,5 @@
     "module": "esnext",
     "useDefineForClassFields": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/renderer/**/*"]
 }

@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <div>
-      <h2>{version}</h2>
+      <h2>{version}大沙发斯蒂芬</h2>
     </div>
   );
 }

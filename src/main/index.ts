@@ -15,10 +15,11 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
+      // contextIsolation: true,
       preload: path.join(app.getAppPath(), 'preload.js'),
     },
   });
-  checkUpdate();
+  // checkUpdate();
   if (isDev) {
     win.loadURL('http://localhost:9000/');
   } else {
@@ -28,15 +29,13 @@ function createWindow() {
 
 app.on('ready', () => {
   if (isDev) {
-    installExtension(REACT_DEVELOPER_TOOLS);
-    installExtension(MOBX_DEVTOOLS);
+    // installExtension(REACT_DEVELOPER_TOOLS);
+    // installExtension(MOBX_DEVTOOLS);
+  } else {
+    checkUpdate();
   }
+
   createWindow();
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length == 0) {
-      createWindow();
-    }
-  });
 });
 
 app.on('window-all-closed', () => {
@@ -45,4 +44,4 @@ app.on('window-all-closed', () => {
   }
 });
 
-ipcMain.handle('get-version', () => app.getVersion());
+ipcMain.handle('get-version', async () => '0.02');

@@ -1,7 +1,8 @@
 import mainConfig from './webpack.config.main';
 import preloadConfig from './webpack.config.preload';
 import rendererConfig from './webpack.config.renderer';
-import os from 'os';
+// import os from 'os';
 
-export const parallelism = os.cpus;
-export default [mainConfig, rendererConfig, preloadConfig];
+const env = process.env;
+// export const parallelism = os.cpus;
+export default [rendererConfig(env), preloadConfig(env), mainConfig(env)];

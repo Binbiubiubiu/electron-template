@@ -1,0 +1,41 @@
+appId: com.example.electronTemplate
+directories:
+  output: dist
+  app: app
+dmg:
+  contents:
+    - type: link
+      path: /Applications
+      x: 410
+      y: 150
+    - type: file
+      x: 130
+      y: 150
+  internetEnabled: true
+mac:
+  target: default
+  category: public.app-category.tools
+  icon: build/icons/icon.icns
+win:
+  target:
+    - target: nsis
+      arch:
+        - 'x64'
+        - 'ia32'
+    - target: zip
+  icon: build/icons/icon.ico
+linux:
+  target: AppImage
+  icon: build/icons
+nsis:
+  artifactName: ${productName}-Setup-${version}.${ext}
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  allowElevation: true
+  perMachine: true
+  runAfterFinish: true
+  deleteAppDataOnUninstall: true
+
+publish:
+  - provider: generic
+    url: http://localhost:3000/autoUpdate

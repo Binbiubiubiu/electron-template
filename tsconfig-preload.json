@@ -5,5 +5,5 @@
     "module": "commonjs",
     "isolatedModules": false
   },
-  "include": ["src/**/*"]
+  "include": ["src/preload/**/*"]
 }

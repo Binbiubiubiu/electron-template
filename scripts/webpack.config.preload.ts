@@ -1,64 +1,66 @@
-import { isProductionMode } from './utils';
 import path from 'path';
-import webpack, { RuleSetRule, Template } from 'webpack';
+import { isProductionMode, WebpackConfiguration, EnvArgs } from './utils';
 
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 
 const r = (...args: string[]) => path.resolve(__dirname, '..', ...args);
 
-const config: webpack.Configuration = {
-  name: 'electron-preload',
-  mode: isProductionMode ? 'production' : 'development',
-  dependencies: ['electron-main'],
-  // cache: {
-  //   type: 'filesystem',
-  // },
-  entry: r('src', 'preload.ts'),
-  output: {
-    path: r('app'),
-    filename: 'preload.js',
-  },
-  target: 'electron-preload',
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?/,
-        exclude: /node_modules/,
-        include: r('src'),
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
+export default function (env: EnvArgs, argv?: EnvArgs): WebpackConfiguration {
+  return {
+    name: 'electron-preload',
+    mode: isProductionMode ? 'production' : 'development',
+    cache: {
+      type: 'filesystem',
+    },
+    entry: r('src', 'preload'),
+    output: {
+      path: r('app'),
+      filename: 'preload.js',
+    },
+    target: 'electron-preload',
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.tsx?/,
+          exclude: /node_modules/,
+          include: r('src', 'preload'),
+          use: {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            },
           },
         },
-      },
+      ],
+    },
+
+    devtool: isProductionMode
+      ? 'nosources-source-map'
+      : 'eval-cheap-module-source-map',
+    plugins: [
+      // new ProgressBarPlugin() as any,
+      new ForkTsCheckerWebpackPlugin({
+        logger: {
+          infrastructure: 'silent',
+          issues: 'silent',
+          devServer: false,
+        },
+        typescript: {
+          mode: 'write-references',
+          configFile: 'tsconfig-preload.json',
+        },
+      }),
     ],
-  },
-
-  devtool: 'source-map',
-  // devtool: isProductionMode
-  //   ? 'nosources-source-map'
-  //   : 'eval-cheap-module-source-map',
-  plugins: [
-    new ProgressBarPlugin() as any,
-    new ForkTsCheckerWebpackPlugin({
-      typescript: {
-        mode: 'write-references',
-        configFile: 'tsconfig-preload.json',
-      },
-    }),
-  ],
-  stats: 'errors-warnings',
-  // watch: !isProductionMode,
-  watchOptions: {
-    aggregateTimeout: 600,
-    ignored: /node_modules/,
-    poll: 1000,
-  },
-};
-
-export default config;
+    stats: 'errors-only',
+    // watch: !isProductionMode,
+    watchOptions: {
+      aggregateTimeout: 600,
+      ignored: '!(src/preload/**)',
+      poll: 1000,
+    },
+  };
+}
