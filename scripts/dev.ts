@@ -4,7 +4,7 @@ import chalk from 'chalk';
 import electronmon from 'electronmon';
 
 import webpackConfig from './webpack.config';
-import { handleError, npmCommand, r } from './utils';
+import { clean, handleError, npmCommand, r } from './utils';
 
 let app: any | null;
 
