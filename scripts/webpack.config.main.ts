@@ -30,14 +30,25 @@ export default function (env: EnvArgs, argv?: EnvArgs): webpack.Configuration {
       : 'eval-cheap-module-source-map',
     module: {
       rules: [
+        // {
+        //   test: /\.ts/,
+        //   exclude: /node_modules/,
+        //   include: r('src', 'main'),
+        //   use: {
+        //     loader: 'babel-loader',
+        //     options: {
+        //       cacheDirectory: true,
+        //     },
+        //   },
+        // },
         {
           test: /\.ts/,
           exclude: /node_modules/,
           include: r('src', 'main'),
           use: {
-            loader: 'babel-loader',
+            loader: 'esbuild-loader',
             options: {
-              cacheDirectory: true,
+              loader: 'ts',
             },
           },
         },

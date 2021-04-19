@@ -5,6 +5,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
+import { ESBuildMinifyPlugin } from 'esbuild-loader';
 
 import { isProductionMode, WebpackConfiguration, EnvArgs, r } from './utils';
 import chalk from 'chalk';
@@ -39,14 +40,25 @@ export default function (env: EnvArgs, argv?: EnvArgs): WebpackConfiguration {
     },
     module: {
       rules: [
+        // {
+        //   test: /\.tsx?/,
+        //   exclude: /node_modules/,
+        //   include: r('src', 'renderer'),
+        //   use: {
+        //     loader: 'babel-loader',
+        //     options: {
+        //       cacheDirectory: true,
+        //     },
+        //   },
+        // },
         {
           test: /\.tsx?/,
           exclude: /node_modules/,
           include: r('src', 'renderer'),
           use: {
-            loader: 'babel-loader',
+            loader: 'esbuild-loader',
             options: {
-              cacheDirectory: true,
+              loader: 'tsx',
             },
           },
         },
@@ -81,6 +93,9 @@ export default function (env: EnvArgs, argv?: EnvArgs): WebpackConfiguration {
           parallel: true,
           extractComments: false,
         }),
+        // new ESBuildMinifyPlugin({
+        //   css: true, // Apply minification to CSS assets
+        // }),
       ],
     },
     devtool: isProductionMode

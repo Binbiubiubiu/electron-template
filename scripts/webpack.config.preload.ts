@@ -24,14 +24,25 @@ export default function (env: EnvArgs, argv?: EnvArgs): WebpackConfiguration {
     },
     module: {
       rules: [
+        // {
+        //   test: /\.tsx?/,
+        //   exclude: /node_modules/,
+        //   include: r('src', 'preload'),
+        //   use: {
+        //     loader: 'babel-loader',
+        //     options: {
+        //       cacheDirectory: true,
+        //     },
+        //   },
+        // },
         {
-          test: /\.tsx?/,
+          test: /\.ts/,
           exclude: /node_modules/,
           include: r('src', 'preload'),
           use: {
-            loader: 'babel-loader',
+            loader: 'esbuild-loader',
             options: {
-              cacheDirectory: true,
+              loader: 'ts',
             },
           },
         },

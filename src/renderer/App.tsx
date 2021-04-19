@@ -1,6 +1,7 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
+import React from 'react';
 import ReactDom from 'react-dom';
 import { makeAutoObservable } from 'mobx';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
@@ -39,7 +40,7 @@ const TimerView = observer(() => {
             <Link to="/about">dcsdfadasd</Link>
           </li>
           <li>
-            <Link to="/about">dcsdfadasd</Link>
+            <Link to="/about">asdfasdfasdfasdfa</Link>
           </li>
           <li>
             <Link to="/dashboard">Dashboardasdfasdf </Link>
