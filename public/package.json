@@ -1,0 +1,17 @@
+{
+  "name": "electron-template",
+  "version": "0.0.1",
+  "description": "a electron template",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Simon-Bin/electron-template.git"
+  },
+  "keywords": [],
+  "author": "Simon-Bin<2632003786@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Simon-Bin/electron-template/issues"
+  },
+  "homepage": "https://github.com/Simon-Bin/electron-template#readme"
+}
