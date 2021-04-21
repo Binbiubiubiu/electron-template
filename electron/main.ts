@@ -20,11 +20,11 @@ function createWindow() {
     },
   });
   // checkUpdate();
-  if (isDev) {
-    win.loadURL("http://localhost:9000/");
-  } else {
-    win.loadFile("index.html");
-  }
+  // if (isDev) {
+  //   win.loadURL("http://localhost:9000/");
+  // } else {
+  win.loadFile("index.html");
+  // }
 }
 
 app.on("ready", () => {
